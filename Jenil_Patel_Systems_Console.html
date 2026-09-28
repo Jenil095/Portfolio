@@ -1,0 +1,3684 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jenil Patel | Systems Console & Portfolio | Qt/QML & C++ Developer</title>
+  <meta name="description"
+    content="Systems engineering console and professional portfolio of Jenil Patel — Software Developer specializing in Qt 5/6, QML, C/C++, Real-Time SCADA/HMI, VMS, and Embedded Systems.">
+  <meta name="keywords"
+    content="Jenil Patel, Software Developer, Qt, QML, C++, SCADA, HMI, VMS, Embedded Systems, Real-Time Telemetry, Bengaluru">
+  <meta name="author" content="Jenil Bhavinbhai Patel">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jenil Patel | Systems Console & Engineering Portfolio">
+  <meta property="og:description"
+    content="Interactive systems console showcasing enterprise VMS platforms, SCADA/HMI telemetry engines, and biometric HMI solutions built with Qt/QML and C++.">
+  <meta property="og:url" content="https://jenilpatel.dev">
+  <meta name="theme-color" content="#0b0f17">
+
+  <!-- Favicon: Systems Console Prompt & Status LED -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070a10'/%3E%3Crect x='4' y='4' width='56' height='56' rx='10' fill='%230c121d' stroke='%2300f0ff' stroke-width='2'/%3E%3Cpath d='M16 22 L28 32 L16 42' fill='none' stroke='%2300f0ff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='34' y1='42' x2='48' y2='42' stroke='%2338bdf8' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='16' r='4' fill='%2310b981'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts: JetBrains Mono (Technical/Stats/Console) & Inter (Clean UI Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jenil Bhavinbhai Patel",
+    "jobTitle": "Software Developer",
+    "telephone": "+91-93278 11078",
+    "email": "pateljenil1451@gmail.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/jenil-p-a92871233"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "addressCountry": "India"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Dharmsinh Desai University"
+    },
+    "knowsAbout": [
+      "C++", "C", "Qt 5.15/6", "QML", "Real-Time Systems", "SCADA", "HMI", 
+      "gRPC", "Protobuf", "OpenCV", "FFmpeg", "GStreamer", "Modbus", "OPC UA", "CAN Protocol"
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & SYSTEMS DASHBOARD THEME
+       ========================================================================== */
+    :root {
+      /* Dark Theme (Default: Deep Avionics Navy / Graphite) */
+      --bg-base: #070a10;
+      --bg-surface: #0c121d;
+      --bg-panel: #111a28;
+      --bg-panel-elevated: #162235;
+      --bg-subtle: rgba(56, 189, 248, 0.04);
+      --bg-input: #090e17;
+
+      --border-dim: rgba(255, 255, 255, 0.08);
+      --border-panel: rgba(56, 189, 248, 0.2);
+      --border-focus: #0ea5e9;
+
+      /* Control Room Telemetry Accents */
+      --color-cyan: #00f0ff;
+      --color-teal: #0ea5e9;
+      --color-green: #10b981;
+      --color-amber: #f59e0b;
+      --color-red: #ef4444;
+      --color-blue: #3b82f6;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --text-mono-accent: #38bdf8;
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+      --glow-cyan: 0 0 16px rgba(0, 240, 255, 0.25);
+      --glow-teal: 0 0 16px rgba(14, 165, 233, 0.25);
+      --glow-green: 0 0 12px rgba(16, 185, 129, 0.3);
+      --glow-amber: 0 0 12px rgba(245, 158, 11, 0.3);
+
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-base: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-panel: #f1f5f9;
+      --bg-panel-elevated: #e2e8f0;
+      --bg-subtle: rgba(14, 165, 233, 0.05);
+      --bg-input: #ffffff;
+
+      --border-dim: rgba(15, 23, 42, 0.1);
+      --border-panel: rgba(14, 165, 233, 0.25);
+      --border-focus: #0284c7;
+
+      --color-cyan: #0284c7;
+      --color-teal: #0369a1;
+      --color-green: #059669;
+      --color-amber: #d97706;
+      --color-red: #dc2626;
+      --color-blue: #2563eb;
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --text-mono-accent: #0284c7;
+
+      --glow-cyan: 0 0 12px rgba(2, 132, 199, 0.15);
+      --glow-teal: 0 0 12px rgba(3, 105, 161, 0.15);
+      --glow-green: 0 0 10px rgba(5, 150, 105, 0.2);
+      --glow-amber: 0 0 10px rgba(217, 119, 6, 0.2);
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLING
+       ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      color-scheme: dark light;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+      background-image:
+        linear-gradient(to right, var(--border-dim) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--border-dim) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: center top;
+    }
+
+    /* Subtle technical grid overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 20%, rgba(14, 165, 233, 0.06), transparent 70%);
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Focus accessibility */
+    :focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 3px;
+    }
+
+    /* ==========================================================================
+       STICKY TOP NAVIGATION BAR
+       ========================================================================== */
+    .nav-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 16, 26, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-panel);
+      transition: var(--transition-normal);
+    }
+
+    [data-theme="light"] .nav-header {
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+    }
+
+    .status-led {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-green);
+      box-shadow: var(--glow-green);
+      animation: ledPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes ledPulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(0.9);
+      }
+    }
+
+    .nav-brand-tag {
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      padding: 6px 4px;
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-mono-accent);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--color-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .btn-theme-toggle:hover {
+      border-color: var(--color-teal);
+      color: var(--text-primary);
+    }
+
+    .nav-mobile-btn {
+      display: none;
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+      padding: 6px 10px;
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      font-size: 1.1rem;
+    }
+
+    /* Scroll progress line */
+    .scroll-progress-track {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: transparent;
+    }
+
+    .scroll-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-teal), var(--color-cyan));
+      box-shadow: var(--glow-cyan);
+      transition: width 0.1s linear;
+    }
+
+    /* ==========================================================================
+       SECTION HEADERS & ENGINEERING BRACKETS
+       ========================================================================== */
+    .section-wrap {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-header-box {
+      margin-bottom: 40px;
+    }
+
+    .section-bracket {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-mono-accent);
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+    }
+
+    /* ==========================================================================
+       HERO / TELEMETRY STATUS CONSOLE
+       ========================================================================== */
+    .hero-wrap {
+      padding: 70px 0 50px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .hero-main-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-lead-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--color-cyan);
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .hero-name {
+      font-size: 2.85rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .hero-title-sub {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-mono-accent);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-typing-box {
+      background: var(--bg-base);
+      border: 1px solid var(--border-dim);
+      border-left: 3px solid var(--color-cyan);
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 32px;
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: var(--color-cyan);
+      margin-left: 6px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-sys {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition-normal);
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-sys-primary {
+      background: var(--color-teal);
+      color: #050a12;
+      border-color: var(--color-cyan);
+      box-shadow: var(--glow-teal);
+    }
+
+    .btn-sys-primary:hover {
+      background: var(--color-cyan);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .btn-sys-secondary {
+      background: var(--bg-panel);
+      color: var(--text-primary);
+      border-color: var(--border-dim);
+    }
+
+    .btn-sys-secondary:hover {
+      border-color: var(--color-teal);
+      color: var(--text-mono-accent);
+      transform: translateY(-2px);
+    }
+
+    /* Right: Status Console Panel */
+    .hero-status-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .panel-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-dim);
+      margin-bottom: 18px;
+    }
+
+    .panel-header-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-mono-accent);
+      letter-spacing: 0.5px;
+    }
+
+    .telemetry-metrics-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .metric-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .metric-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-val {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tag-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: var(--radius-sm);
+      color: var(--color-green);
+      font-size: 0.74rem;
+    }
+
+    .panel-footer-readout {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-dim);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ==========================================================================
+       STATS STRIP (VERIFIED RESUME FACTS ONLY)
+       ========================================================================== */
+    .stats-strip-wrap {
+      padding: 10px 0 40px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      transition: var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat-card:hover {
+      border-color: var(--color-teal);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .stat-number {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-cyan);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       ABOUT SECTION
+       ========================================================================== */
+    .about-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+
+    .about-paragraphs {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .about-paragraphs p+p {
+      margin-top: 16px;
+    }
+
+    .about-paragraphs strong {
+      color: var(--text-primary);
+    }
+
+    .chips-group-title {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-mono-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-chip {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      transition: var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tech-chip:hover {
+      border-color: var(--color-teal);
+      background: var(--bg-panel-elevated);
+      color: var(--text-mono-accent);
+    }
+
+    /* ==========================================================================
+       PROJECTS SECTION (FLAGSHIP PRODUCTS)
+       ========================================================================== */
+    .projects-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .project-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: var(--transition-normal);
+      position: relative;
+    }
+
+    .project-card:hover {
+      border-color: var(--color-teal);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      gap: 20px;
+    }
+
+    .project-id-tag {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--color-cyan);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .project-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .project-company-badge {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      background: var(--bg-panel);
+      padding: 4px 10px;
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .project-brief {
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      margin-bottom: 22px;
+      line-height: 1.65;
+    }
+
+    .project-tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+
+    .tech-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      color: var(--color-cyan);
+    }
+
+    /* Data-flow / Architecture Diagram */
+    .arch-diagram-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 24px;
+    }
+
+    .arch-diagram-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .arch-svg {
+      width: 100%;
+      height: auto;
+      max-height: 80px;
+      display: block;
+    }
+
+    /* Key Contributions Accordion */
+    .contributions-box {
+      border-top: 1px solid var(--border-dim);
+      padding-top: 20px;
+    }
+
+    .contributions-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-mono-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    .contributions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contribution-item {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .contribution-item::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--color-cyan);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+
+    /* Expand / Collapse Toggle */
+    .details-toggle-btn {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-mono-accent);
+      cursor: pointer;
+    }
+
+    .details-toggle-btn:hover {
+      text-decoration: underline;
+    }
+
+    .collapsible-details {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .collapsible-details.open {
+      display: block;
+    }
+
+    /* ==========================================================================
+       INTERACTIVE LAB (SIMULATIONS)
+       ========================================================================== */
+    .lab-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .lab-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 520px;
+      position: relative;
+    }
+
+    .lab-panel-header {
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-dim);
+      margin-bottom: 16px;
+    }
+
+    .lab-panel-sub {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .lab-panel-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .sim-disclaimer {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--color-amber);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    /* Lab A: SCADA Telemetry Simulator */
+    .protocol-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .proto-chip {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 4px 8px;
+      border: 1px solid var(--border-dim);
+      background: var(--bg-panel);
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    .proto-chip.active {
+      border-color: var(--color-cyan);
+      color: var(--color-cyan);
+      background: rgba(0, 240, 255, 0.08);
+    }
+
+    .telemetry-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
+
+    .telemetry-table th {
+      text-align: left;
+      padding: 6px 8px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-dim);
+      font-size: 0.7rem;
+    }
+
+    .telemetry-table td {
+      padding: 7px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-primary);
+    }
+
+    .tag-row.selected {
+      background: var(--bg-subtle);
+    }
+
+    .tag-val-span {
+      color: var(--color-cyan);
+      font-weight: 600;
+    }
+
+    .live-trend-chart-box {
+      background: var(--bg-base);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      padding: 8px;
+      height: 100px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .trend-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .alarm-panel-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+    }
+
+    .alarm-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .alarm-status-pill {
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.68rem;
+    }
+
+    .alarm-status-pill.active {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--color-red);
+      border: 1px solid var(--color-red);
+    }
+
+    .alarm-status-pill.acked {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--color-amber);
+      border: 1px solid var(--color-amber);
+    }
+
+    .alarm-status-pill.normal {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--color-green);
+      border: 1px solid var(--color-green);
+    }
+
+    .btn-ack-alarm {
+      padding: 3px 8px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: var(--bg-panel-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    .btn-ack-alarm:hover {
+      border-color: var(--color-amber);
+      color: var(--color-amber);
+    }
+
+    /* Lab B: VMS Video Wall Mock */
+    .vms-layout-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+    }
+
+    .vms-grid-container {
+      display: grid;
+      gap: 6px;
+      background: #000;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-dim);
+      margin-bottom: 12px;
+      aspect-ratio: 16 / 10;
+    }
+
+    .vms-grid-container.grid-2x2 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .vms-grid-container.grid-3x3 {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+
+    .vms-cam-tile {
+      background: #080d14;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .vms-cam-tile.selected {
+      border-color: var(--color-cyan);
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+    }
+
+    .vms-tile-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .vms-tile-overlay {
+      position: absolute;
+      top: 4px;
+      left: 6px;
+      right: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: #fff;
+      text-shadow: 0 1px 3px #000;
+      pointer-events: none;
+    }
+
+    .vms-live-badge {
+      color: var(--color-green);
+      font-weight: 700;
+    }
+
+    /* PTZ controls */
+    .ptz-control-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      margin-bottom: 10px;
+    }
+
+    .ptz-btn-cluster {
+      display: grid;
+      grid-template-columns: repeat(3, 24px);
+      gap: 3px;
+    }
+
+    .ptz-btn {
+      width: 24px;
+      height: 24px;
+      background: var(--bg-panel-elevated);
+      border: 1px solid var(--border-dim);
+      border-radius: 2px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .ptz-btn:hover {
+      border-color: var(--color-cyan);
+      color: var(--color-cyan);
+    }
+
+    .vms-alert-feed {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      background: var(--bg-base);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      height: 48px;
+      overflow-y: auto;
+    }
+
+    /* Lab C: Iris Quality Gauge */
+    .iris-simulation-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-base);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin-bottom: 16px;
+      position: relative;
+      height: 180px;
+    }
+
+    .iris-reticle-svg {
+      width: 140px;
+      height: 140px;
+      position: absolute;
+    }
+
+    .iris-quality-readout {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      font-family: var(--font-mono);
+    }
+
+    .quality-score-num {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--color-cyan);
+      line-height: 1;
+    }
+
+    .quality-score-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .iris-metrics-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      margin-bottom: 16px;
+    }
+
+    .iris-metric-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+    }
+
+    .iris-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      margin-bottom: 12px;
+      color: var(--color-green);
+    }
+
+    .btn-capture-frame {
+      width: 100%;
+      background: var(--color-teal);
+      color: #050a12;
+      border: 1px solid var(--color-cyan);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-capture-frame:hover {
+      background: var(--color-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* ==========================================================================
+       TERMINAL COMMAND CONSOLE (INTERACTIVE WIDGET)
+       ========================================================================== */
+    .terminal-wrap {
+      margin-top: 40px;
+    }
+
+    .terminal-card {
+      background: #06090e;
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .terminal-title-bar {
+      background: #0f1724;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .term-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .term-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #334155;
+    }
+
+    .term-dot.red {
+      background: #ef4444;
+    }
+
+    .term-dot.yellow {
+      background: #f59e0b;
+    }
+
+    .term-dot.green {
+      background: #10b981;
+    }
+
+    .term-title-text {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .term-preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 10px 16px;
+      background: #090e17;
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .btn-term-preset {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 4px 9px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      color: var(--text-mono-accent);
+      cursor: pointer;
+    }
+
+    .btn-term-preset:hover {
+      background: var(--bg-panel-elevated);
+      border-color: var(--color-teal);
+    }
+
+    .terminal-body {
+      padding: 18px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      color: #e2e8f0;
+      min-height: 220px;
+      max-height: 380px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+
+    .terminal-line {
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .term-prompt-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .term-prompt-symbol {
+      color: var(--color-cyan);
+      font-weight: 700;
+    }
+
+    .terminal-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      outline: none;
+    }
+
+    /* ==========================================================================
+       SKILLS SECTION (GROUPED CATEGORIES & TIERS)
+       ========================================================================== */
+    .skills-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+    }
+
+    .skills-group-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: var(--transition-normal);
+    }
+
+    .skills-group-card:hover {
+      border-color: var(--color-teal);
+      transform: translateY(-2px);
+    }
+
+    .skills-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .skills-group-title {
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-mono-accent);
+      letter-spacing: 0.5px;
+    }
+
+    .skills-tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-badge {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+    }
+
+    .skill-badge.core {
+      border-color: rgba(0, 240, 255, 0.4);
+      background: rgba(0, 240, 255, 0.05);
+      color: var(--color-cyan);
+    }
+
+    /* ==========================================================================
+       EXPERIENCE & EDUCATION TIMELINE
+       ========================================================================== */
+    .timeline-container {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline-container::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border-panel);
+    }
+
+    .timeline-node {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .timeline-node::before {
+      content: "";
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg-base);
+      border: 2px solid var(--color-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .timeline-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 26px 28px;
+      transition: var(--transition-normal);
+    }
+
+    .timeline-card:hover {
+      border-color: var(--color-teal);
+    }
+
+    .timeline-role-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      gap: 16px;
+    }
+
+    .timeline-role-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .timeline-period-badge {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--color-cyan);
+      background: var(--bg-panel);
+      padding: 4px 10px;
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .timeline-company {
+      font-size: 0.94rem;
+      color: var(--text-mono-accent);
+      margin-bottom: 14px;
+    }
+
+    .timeline-details-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .timeline-details-list li {
+      position: relative;
+      padding-left: 18px;
+      line-height: 1.6;
+    }
+
+    .timeline-details-list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--color-cyan);
+      font-weight: bold;
+    }
+
+    /* Education Card */
+    .edu-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .edu-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .edu-meta {
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      color: var(--color-cyan);
+      margin-bottom: 12px;
+    }
+
+    /* ==========================================================================
+       CONTACT SECTION ("COMMUNICATION BUS")
+       ========================================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .contact-info-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .contact-entry {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .contact-entry:hover {
+      border-color: var(--color-teal);
+    }
+
+    .contact-icon-box {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-base);
+      border-radius: var(--radius-sm);
+      color: var(--color-cyan);
+    }
+
+    .contact-label-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-val-link {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .contact-val-link:hover {
+      color: var(--color-cyan);
+    }
+
+    .contact-actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Dispatch message card */
+    .dispatch-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-panel);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .dispatch-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-control {
+      background: var(--bg-input);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: var(--transition-fast);
+    }
+
+    .form-control:focus {
+      border-color: var(--color-teal);
+      outline: none;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    /* ==========================================================================
+       FOOTER & BACK TO TOP
+       ========================================================================== */
+    .footer-wrap {
+      border-top: 1px solid var(--border-panel);
+      padding: 36px 0;
+      background: var(--bg-surface);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn-back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-mono-accent);
+      padding: 6px 12px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .btn-back-to-top:hover {
+      border-color: var(--color-teal);
+      color: var(--color-cyan);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-mobile-btn {
+        display: block;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border-panel);
+        padding: 20px;
+        gap: 16px;
+      }
+
+      .hero-name {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card-header {
+        flex-direction: column;
+      }
+    }
+
+    /* Accessibility: Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       STICKY TOP NAVIGATION BAR
+       ========================================================================== -->
+  <header class="nav-header" role="banner">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-brand" aria-label="Systems Console Home">
+        <span class="status-led" aria-hidden="true"></span>
+        <span>JENIL PATEL // SYSTEMS CONSOLE</span>
+        <span class="nav-brand-tag">[v3.2_LTS]</span>
+      </a>
+
+      <nav class="nav-links" id="nav-menu" role="navigation" aria-label="Main Navigation">
+        <a href="#about" class="nav-link" data-nav="about">About</a>
+        <a href="#projects" class="nav-link" data-nav="projects">Projects</a>
+        <a href="#lab" class="nav-link" data-nav="lab">Lab [Sim]</a>
+        <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
+        <a href="#experience" class="nav-link" data-nav="experience">Experience</a>
+        <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-theme-toggle" id="theme-toggle-btn" aria-label="Toggle Console Theme Mode">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z" />
+          </svg>
+          <span id="theme-btn-label">THEME: DARK</span>
+        </button>
+
+        <button class="nav-mobile-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Scroll Progress Line -->
+    <div class="scroll-progress-track" aria-hidden="true">
+      <div class="scroll-progress-fill" id="scroll-progress-fill"></div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ==========================================================================
+         HERO SECTION: SYSTEMS CONSOLE
+         ========================================================================== -->
+    <section id="hero" class="hero-wrap">
+      <div class="container hero-grid">
+        <!-- Main Hero Card -->
+        <div class="hero-main-card">
+          <div>
+            <div class="hero-lead-badge">
+              <span class="status-led" style="width:6px; height:6px;"></span>
+              SYSTEMS ENGINEERING CONSOLE // ACTIVE
+            </div>
+
+            <h1 class="hero-name">Jenil Bhavinbhai Patel</h1>
+            <div class="hero-title-sub">
+              <span>Software Developer</span>
+              <span style="color:var(--border-panel);">|</span>
+              <span>Qt/QML</span>
+              <span style="color:var(--border-panel);">|</span>
+              <span>C/C++</span>
+            </div>
+
+            <div class="hero-typing-box" aria-live="polite">
+              <span id="typewriter-text"></span><span class="typing-cursor" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="hero-cta-row">
+            <a href="#projects" class="btn-sys btn-sys-primary">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+              </svg>
+              View Projects
+            </a>
+            <a href="Jenil_Patel_Resume.pdf" download class="btn-sys btn-sys-secondary">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+              </svg>
+              Download Resume
+            </a>
+            <a href="#contact" class="btn-sys btn-sys-secondary">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+              Contact
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Real-Time Status Panel -->
+        <div class="hero-status-panel">
+          <div>
+            <div class="panel-header-bar">
+              <span class="panel-header-title">SYS_STATUS // TELEMETRY PANEL</span>
+              <span class="tag-status-pill">
+                <span class="status-led" style="width:6px;height:6px;"></span>
+                ONLINE
+              </span>
+            </div>
+
+            <div class="telemetry-metrics-list">
+              <div class="metric-row">
+                <span class="metric-label">Operational Base</span>
+                <span class="metric-val">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
+                  Bengaluru, Karnataka, India
+                </span>
+              </div>
+
+              <div class="metric-row">
+                <span class="metric-label">Recruitment Status</span>
+                <span class="metric-val">
+                  <span class="tag-status-pill">Available for Opportunities</span>
+                </span>
+              </div>
+
+              <div class="metric-row">
+                <span class="metric-label">Current Architecture Focus</span>
+                <span class="metric-val" style="color:var(--color-cyan);">
+                  Qt 6 / QML, Modern C++, Real-Time VMS & SCADA/HMI
+                </span>
+              </div>
+
+              <div class="metric-row">
+                <span class="metric-label">Verified Core Stack</span>
+                <span class="metric-val" style="font-size:0.82rem; color:var(--text-secondary);">
+                  C++, C, Qt 5.15/6, QML, gRPC, Protobuf, OpenCV, FFmpeg
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-footer-readout">
+            <span>ENGINE: Qt/C++ RUNTIME</span>
+            <span id="live-sys-clock">UTC 00:00:00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STATS STRIP (VERIFIED RESUME FACTS ONLY)
+         ========================================================================== -->
+    <section class="stats-strip-wrap" aria-label="Resume Facts & Metrics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Years Experience in Desktop, Embedded & Industrial Software</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Industrial Protocol Drivers & Substation Integrations</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Flagship Products Engineered at Digital Shark Technology</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Roles Across Desktop, Industrial, Embedded & Mobile Domains</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT SECTION
+         ========================================================================== -->
+    <section id="about" class="section-wrap">
+      <div class="container">
+        <div class="section-header-box">
+          <span class="section-bracket">[ 01 // OVERVIEW ]</span>
+          <h2 class="section-title">Professional Summary</h2>
+          <p class="section-desc">Engineering resilient, low-latency applications at the boundary of hardware, protocol
+            stacks, and rich user interfaces.</p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-paragraphs">
+            <p>
+              Software Developer with <strong>3+ years of experience</strong> building performance-critical desktop,
+              industrial, and embedded software in <strong>C/C++, Qt 5/6, and QML</strong>.
+            </p>
+            <p>
+              At <strong>Digital Shark Technology</strong>, actively develops an enterprise <strong>Video Management
+                System (VMS)</strong>, a <strong>SCADA/HMI platform</strong> supporting 15+ industrial protocol drivers,
+              and a biometric iris-scanner HMI. Strong in multithreading, real-time telemetry, gRPC/Protobuf
+              integration, hardware SDK integration, and CMake/CI-CD packaging.
+            </p>
+            <p>
+              Grounded in automotive and embedded communication protocols (<strong>CAN, UART, SPI, I2C</strong>) on ARM
+              microcontrollers, combining low-level systems proficiency with modern, intuitive desktop interface
+              engineering.
+            </p>
+          </div>
+
+          <div>
+            <div class="chips-group-title">Key Engineering Strengths</div>
+            <div class="chips-container">
+              <span class="tech-chip">Multithreaded C++ Architecture</span>
+              <span class="tech-chip">Qt 5.15 & Qt 6 (Widgets, QML, Quick)</span>
+              <span class="tech-chip">Real-Time Telemetry & Historian</span>
+              <span class="tech-chip">Industrial Protocols (Modbus, OPC UA)</span>
+              <span class="tech-chip">Hardware SDK & Sensor Interfacing</span>
+              <span class="tech-chip">Cross-Platform CMake & CI/CD Toolchains</span>
+              <span class="tech-chip">Automotive Bus Systems (CAN, UART, SPI, I2C)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PROJECTS SECTION (3 FLAGSHIP PRODUCTS)
+         ========================================================================== -->
+    <section id="projects" class="section-wrap">
+      <div class="container">
+        <div class="section-header-box">
+          <span class="section-bracket">[ 02 // FLAGSHIP PLATFORMS ]</span>
+          <h2 class="section-title">Production Systems & Architecture</h2>
+          <p class="section-desc">In-depth technical breakdown of enterprise desktop, SCADA, and biometric platforms
+            engineered at Digital Shark Technology.</p>
+        </div>
+
+        <div class="projects-stack">
+
+          <!-- Project A: Hi-Focus VMS -->
+          <article class="project-card" id="project-vms">
+            <div class="project-card-header">
+              <div>
+                <span class="project-id-tag">SYS-PROD // 01</span>
+                <h3 class="project-title">Hi-Focus VMS Platform</h3>
+              </div>
+              <span class="project-company-badge">Digital Shark Technology Pvt. Ltd.</span>
+            </div>
+
+            <p class="project-brief">
+              Enterprise cross-platform Video Management System desktop client built to handle multi-camera live video
+              feeds, PTZ control, encrypted storage, and real-time backend alerting.
+            </p>
+
+            <div class="project-tech-row">
+              <span class="tech-pill">Qt 6</span>
+              <span class="tech-pill">QML</span>
+              <span class="tech-pill">C++</span>
+              <span class="tech-pill">gRPC</span>
+              <span class="tech-pill">Protobuf</span>
+              <span class="tech-pill">FFmpeg</span>
+              <span class="tech-pill">GStreamer</span>
+              <span class="tech-pill">RTSP</span>
+              <span class="tech-pill">ONVIF</span>
+              <span class="tech-pill">SQLCipher</span>
+            </div>
+
+            <!-- Architecture Diagram -->
+            <div class="arch-diagram-box">
+              <div class="arch-diagram-title">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                </svg>
+                SYSTEM DATA-FLOW ARCHITECTURE
+              </div>
+              <svg class="arch-svg" viewBox="0 0 800 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Node 1 -->
+                <rect x="10" y="20" width="130" height="50" rx="4" fill="var(--bg-surface)" stroke="var(--border-panel)"
+                  stroke-width="1.5" />
+                <text x="75" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">IP CAMERAS</text>
+                <text x="75" y="58" fill="var(--color-cyan)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">ONVIF / RTSP</text>
+                <!-- Arrow 1 -->
+                <path d="M140 45 L180 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="180,45 174,41 174,49" fill="var(--color-cyan)" />
+                <!-- Node 2 -->
+                <rect x="180" y="20" width="140" height="50" rx="4" fill="var(--bg-surface)"
+                  stroke="var(--border-panel)" stroke-width="1.5" />
+                <text x="250" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">MEDIAMTX STREAM</text>
+                <text x="250" y="58" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">gRPC / Protobuf</text>
+                <!-- Arrow 2 -->
+                <path d="M320 45 L360 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="360,45 354,41 354,49" fill="var(--color-cyan)" />
+                <!-- Node 3 -->
+                <rect x="360" y="20" width="140" height="50" rx="4" fill="var(--bg-surface)"
+                  stroke="var(--border-panel)" stroke-width="1.5" />
+                <text x="430" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">WORKER THREADS</text>
+                <text x="430" y="58" fill="var(--color-cyan)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">FFmpeg / TurboJPEG</text>
+                <!-- Arrow 3 -->
+                <path d="M500 45 L540 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="540,45 534,41 534,49" fill="var(--color-cyan)" />
+                <!-- Node 4 -->
+                <rect x="540" y="20" width="120" height="50" rx="4" fill="var(--bg-surface)" stroke="var(--color-teal)"
+                  stroke-width="1.5" />
+                <text x="600" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">Qt 6 / QML HMI</text>
+                <text x="600" y="58" fill="var(--color-green)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">Multi-Tile View</text>
+                <!-- Arrow 4 -->
+                <path d="M660 45 L700 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="700,45 694,41 694,49" fill="var(--color-cyan)" />
+                <!-- Node 5 -->
+                <rect x="700" y="20" width="90" height="50" rx="4" fill="var(--bg-surface)" stroke="var(--border-panel)"
+                  stroke-width="1.5" />
+                <text x="745" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="10"
+                  text-anchor="middle" font-weight="600">SQLCIPHER</text>
+                <text x="745" y="58" fill="var(--color-amber)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">Encrypted DB</text>
+              </svg>
+            </div>
+
+            <!-- Key Contributions -->
+            <div class="contributions-box">
+              <div class="contributions-title">Key Contributions</div>
+              <ul class="contributions-list">
+                <li class="contribution-item">
+                  Developed features for a cross-platform enterprise Video Management System desktop client in Qt 6/QML
+                  and C++: multi-camera live view, recording schedules, timeline playback, PTZ control, ONVIF device
+                  integration, two-way audio talkback, alarm management and telemetry.
+                </li>
+                <li class="contribution-item">
+                  Integrated the client with backend services using Qt gRPC/Protobuf and MediaMTX RTSP streams for
+                  device management, role-based user management, alarm records and AI alert search.
+                </li>
+                <li class="contribution-item">
+                  Optimized multi-channel video decoding and rendering with FFmpeg/GStreamer worker threads, TurboJPEG
+                  decoding and GPU management to keep feeds smooth on constrained hardware.
+                </li>
+                <li class="contribution-item">
+                  Implemented SQLCipher-encrypted storage for credentials and metadata, plus client-side security
+                  controls such as IP filtering and screen protection.
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Project B: SharkView Platform -->
+          <article class="project-card" id="project-scada">
+            <div class="project-card-header">
+              <div>
+                <span class="project-id-tag">SYS-PROD // 02</span>
+                <h3 class="project-title">SharkView Platform (SCADA/HMI)</h3>
+              </div>
+              <span class="project-company-badge">Digital Shark Technology Pvt. Ltd.</span>
+            </div>
+
+            <p class="project-brief">
+              Comprehensive industrial automation and telemetry platform featuring a Studio IDE and high-speed Runtime
+              engine connecting fieldbus devices to dynamic QML process control interfaces.
+            </p>
+
+            <div class="project-tech-row">
+              <span class="tech-pill">Qt 5.15 / Qt 6</span>
+              <span class="tech-pill">C++</span>
+              <span class="tech-pill">QML</span>
+              <span class="tech-pill">Modbus TCP/RTU</span>
+              <span class="tech-pill">PLC Tags</span>
+              <span class="tech-pill">ISA-18.2 Alarms</span>
+              <span class="tech-pill">SQLite Historian</span>
+              <span class="tech-pill">CMake</span>
+              <span class="tech-pill">Azure DevOps</span>
+            </div>
+
+            <!-- Architecture Diagram -->
+            <div class="arch-diagram-box">
+              <div class="arch-diagram-title">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                </svg>
+                SCADA TELEMETRY DATA FLOW
+              </div>
+              <svg class="arch-svg" viewBox="0 0 800 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Node 1 -->
+                <rect x="15" y="20" width="140" height="50" rx="4" fill="var(--bg-surface)" stroke="var(--border-panel)"
+                  stroke-width="1.5" />
+                <text x="85" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">FIELD DEVICES</text>
+                <text x="85" y="58" fill="var(--color-amber)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">Modbus / Substation</text>
+                <!-- Arrow 1 -->
+                <path d="M155 45 L205 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="205,45 199,41 199,49" fill="var(--color-cyan)" />
+                <!-- Node 2 -->
+                <rect x="205" y="20" width="160" height="50" rx="4" fill="var(--bg-surface)"
+                  stroke="var(--border-panel)" stroke-width="1.5" />
+                <text x="285" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">PROTOCOL PLUGINS</text>
+                <text x="285" y="58" fill="var(--color-cyan)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">15+ Industrial Drivers</text>
+                <!-- Arrow 2 -->
+                <path d="M365 45 L415 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="415,45 409,41 409,49" fill="var(--color-cyan)" />
+                <!-- Node 3 -->
+                <rect x="415" y="20" width="160" height="50" rx="4" fill="var(--bg-surface)"
+                  stroke="var(--border-panel)" stroke-width="1.5" />
+                <text x="495" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">RUNTIME TAG ENGINE</text>
+                <text x="495" y="58" fill="var(--color-green)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">Historian & ISA-18.2</text>
+                <!-- Arrow 3 -->
+                <path d="M575 45 L625 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="625,45 619,41 619,49" fill="var(--color-cyan)" />
+                <!-- Node 4 -->
+                <rect x="625" y="20" width="160" height="50" rx="4" fill="var(--bg-surface)" stroke="var(--color-teal)"
+                  stroke-width="1.5" />
+                <text x="705" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">QML SCADA HMI</text>
+                <text x="705" y="58" fill="var(--color-cyan)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">Dynamic Visual Widgets</text>
+              </svg>
+            </div>
+
+            <!-- Key Contributions -->
+            <div class="contributions-box">
+              <div class="contributions-title">Key Contributions</div>
+              <ul class="contributions-list">
+                <li class="contribution-item">
+                  Contributed to an enterprise SCADA/HMI platform (Studio IDE and Runtime) supporting 15+ industrial
+                  protocols, ISA-18.2 alarm management, SQLite historian, redundancy/failover and embedded JavaScript
+                  scripting.
+                </li>
+                <li class="contribution-item">
+                  Implemented fieldbus and substation protocol drivers (Modbus, PLC tags) as Qt plugins for real-time
+                  telemetry acquisition into the runtime tag engine.
+                </li>
+                <li class="contribution-item">
+                  Engineered reusable QML industrial visual components (tanks, pumps, valves, trends, 3D digital-twin
+                  widgets) bound to live tag data.
+                </li>
+                <li class="contribution-item">
+                  Streamlined CMake build, ARM Linux cross-compilation toolchains and automated packaging/deployment
+                  across Azure DevOps CI/CD pipelines (Windows installer, Linux AppImage, CTest suites).
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Project C: Visiontek-HMI -->
+          <article class="project-card" id="project-iris">
+            <div class="project-card-header">
+              <div>
+                <span class="project-id-tag">SYS-PROD // 03</span>
+                <h3 class="project-title">Visiontek-HMI, Iris Scanner Platform</h3>
+              </div>
+              <span class="project-company-badge">Digital Shark Technology Pvt. Ltd.</span>
+            </div>
+
+            <p class="project-brief">
+              High-speed biometric HMI interfaced with hardware iris-scanner modules over USB/UART, delivering real-time
+              video capture, image quality scoring, and multi-theme branding.
+            </p>
+
+            <div class="project-tech-row">
+              <span class="tech-pill">Qt 6</span>
+              <span class="tech-pill">QML</span>
+              <span class="tech-pill">C++</span>
+              <span class="tech-pill">OpenCV</span>
+              <span class="tech-pill">IDDK SDK</span>
+              <span class="tech-pill">USB/UART</span>
+              <span class="tech-pill">QQuickImageProvider</span>
+              <span class="tech-pill">Inno Setup</span>
+              <span class="tech-pill">CMake</span>
+            </div>
+
+            <!-- Architecture Diagram -->
+            <div class="arch-diagram-box">
+              <div class="arch-diagram-title">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                </svg>
+                BIOMETRIC CAPTURE & PIPELINE ARCHITECTURE
+              </div>
+              <svg class="arch-svg" viewBox="0 0 800 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Node 1 -->
+                <rect x="15" y="20" width="140" height="50" rx="4" fill="var(--bg-surface)" stroke="var(--border-panel)"
+                  stroke-width="1.5" />
+                <text x="85" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">IRIS HARDWARE</text>
+                <text x="85" y="58" fill="var(--color-amber)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">USB / UART Bus</text>
+                <!-- Arrow 1 -->
+                <path d="M155 45 L205 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="205,45 199,41 199,49" fill="var(--color-cyan)" />
+                <!-- Node 2 -->
+                <rect x="205" y="20" width="140" height="50" rx="4" fill="var(--bg-surface)"
+                  stroke="var(--border-panel)" stroke-width="1.5" />
+                <text x="275" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">IDDK SDK</text>
+                <text x="275" y="58" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">Device Driver Layer</text>
+                <!-- Arrow 2 -->
+                <path d="M345 45 L395 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="395,45 389,41 389,49" fill="var(--color-cyan)" />
+                <!-- Node 3 -->
+                <rect x="395" y="20" width="170" height="50" rx="4" fill="var(--bg-surface)"
+                  stroke="var(--border-panel)" stroke-width="1.5" />
+                <text x="480" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">OPENCV EVALUATOR</text>
+                <text x="480" y="58" fill="var(--color-cyan)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">Score & Usable Area</text>
+                <!-- Arrow 3 -->
+                <path d="M565 45 L615 45" stroke="var(--color-cyan)" stroke-width="2" stroke-dasharray="3 3" />
+                <polygon points="615,45 609,41 609,49" fill="var(--color-cyan)" />
+                <!-- Node 4 -->
+                <rect x="615" y="20" width="170" height="50" rx="4" fill="var(--bg-surface)" stroke="var(--color-teal)"
+                  stroke-width="1.5" />
+                <text x="700" y="44" fill="var(--text-primary)" font-family="var(--font-mono)" font-size="11"
+                  text-anchor="middle" font-weight="600">QQuickImageProvider</text>
+                <text x="700" y="58" fill="var(--color-green)" font-family="var(--font-mono)" font-size="9"
+                  text-anchor="middle">Qt 6 / QML Live Feed</text>
+              </svg>
+            </div>
+
+            <!-- Key Contributions -->
+            <div class="contributions-box">
+              <div class="contributions-title">Key Contributions</div>
+              <ul class="contributions-list">
+                <li class="contribution-item">
+                  Engineered a high-speed HMI in Qt 6/QML and C++ with OpenCV, interfaced with biometric iris-scanner
+                  hardware through the IDDK SDK over USB/UART for real-time video capture and image export (K1/K3/K7,
+                  JPEG2000).
+                </li>
+                <li class="contribution-item">
+                  Implemented frame-capture loops, dynamic iris quality scoring and usable-area evaluation, streaming
+                  live frames to QML through a custom QQuickImageProvider.
+                </li>
+                <li class="contribution-item">
+                  Built device lifecycle management: connection monitoring, capture retry and error recovery, and
+                  session timeout/warning handling.
+                </li>
+                <li class="contribution-item">
+                  Designed a centralized .env-driven multi-theme branding engine propagated across C++, QML, Windows
+                  resources, CMake and installer scripts; automated one-step build, windeployqt staging, Inno Setup
+                  installer and SHA-256/MD5 checksums.
+                </li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         INTERACTIVE LAB (SIMULATIONS)
+         ========================================================================== -->
+    <section id="lab" class="section-wrap">
+      <div class="container">
+        <div class="section-header-box">
+          <span class="section-bracket">[ 03 // INTERACTIVE SIMULATION LAB ]</span>
+          <h2 class="section-title">Systems Demonstration Lab</h2>
+          <p class="section-desc">Client-side simulations representing the real telemetry, surveillance grid, and
+            biometric scoring architectures described in the resume.</p>
+        </div>
+
+        <div class="lab-grid">
+
+          <!-- Simulation A: SCADA Telemetry Simulator -->
+          <div class="lab-panel" id="panel-sim-scada">
+            <div>
+              <div class="lab-panel-header">
+                <span class="lab-panel-sub">SHARKVIEW ARCHITECTURE</span>
+                <h3 class="lab-panel-title">SCADA Telemetry Simulator</h3>
+                <div class="sim-disclaimer">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                  </svg>
+                  Simulated demo, not real data.
+                </div>
+              </div>
+
+              <!-- Protocol chips -->
+              <div class="protocol-chips-row" role="group" aria-label="Protocol Selection">
+                <button class="proto-chip active" data-proto="Modbus TCP">Modbus TCP</button>
+                <button class="proto-chip" data-proto="Modbus RTU">Modbus RTU</button>
+                <button class="proto-chip" data-proto="OPC UA">OPC UA</button>
+                <button class="proto-chip" data-proto="MQTT">MQTT</button>
+              </div>
+
+              <!-- Live Tag Table -->
+              <table class="telemetry-table" aria-label="Simulated Tag Telemetry Table">
+                <thead>
+                  <tr>
+                    <th>TAG NAME</th>
+                    <th>VAL</th>
+                    <th>UNIT</th>
+                  </tr>
+                </thead>
+                <tbody id="telemetry-table-body">
+                  <tr class="tag-row selected" data-tag="Tank_Level">
+                    <td>Tank_Level</td>
+                    <td><span class="tag-val-span" id="val-Tank_Level">68.4</span></td>
+                    <td>%</td>
+                  </tr>
+                  <tr class="tag-row" data-tag="Line_Pressure">
+                    <td>Line_Pressure</td>
+                    <td><span class="tag-val-span" id="val-Line_Pressure">4.2</span></td>
+                    <td>bar</td>
+                  </tr>
+                  <tr class="tag-row" data-tag="Valve_02_Position">
+                    <td>Valve_02_Position</td>
+                    <td><span class="tag-val-span" id="val-Valve_02_Position">45.0</span></td>
+                    <td>%</td>
+                  </tr>
+                  <tr class="tag-row" data-tag="Pump_01_Status">
+                    <td>Pump_01_Status</td>
+                    <td><span class="tag-val-span" id="val-Pump_01_Status" style="color:var(--color-green);">RUN</span>
+                    </td>
+                    <td>state</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Live Trend Chart -->
+              <div class="live-trend-chart-box">
+                <canvas id="trend-canvas" class="trend-canvas" width="300" height="90"
+                  aria-label="Live Tag Trend Graph"></canvas>
+              </div>
+            </div>
+
+            <!-- ISA-18.2 Alarm Panel -->
+            <div class="alarm-panel-box">
+              <div class="alarm-header-row">
+                <span>ISA-18.2 ALARM: <span id="alarm-tag-name">Tank_Level</span></span>
+                <span class="alarm-status-pill normal" id="alarm-pill">CLEARED</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span id="alarm-message" style="color:var(--text-muted); font-size:0.7rem;">Normal process
+                  boundaries</span>
+                <button class="btn-ack-alarm" id="btn-ack-alarm">ACKNOWLEDGE</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulation B: VMS Video Wall Mock -->
+          <div class="lab-panel" id="panel-sim-vms">
+            <div>
+              <div class="lab-panel-header">
+                <span class="lab-panel-sub">HI-FOCUS VMS ARCHITECTURE</span>
+                <h3 class="lab-panel-title">VMS Video Wall Mock</h3>
+                <div class="sim-disclaimer">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                  </svg>
+                  Simulated demo, not real data.
+                </div>
+              </div>
+
+              <!-- Grid Switcher -->
+              <div class="vms-layout-bar">
+                <span>LAYOUT SELECTOR</span>
+                <div style="display:flex; gap:6px;">
+                  <button class="proto-chip active" id="btn-grid-2x2">2x2 GRID</button>
+                  <button class="proto-chip" id="btn-grid-3x3">3x3 GRID</button>
+                </div>
+              </div>
+
+              <!-- Camera Grid -->
+              <div class="vms-grid-container grid-2x2" id="vms-grid">
+                <!-- Cam 1 -->
+                <div class="vms-cam-tile selected" data-cam="CAM-01">
+                  <canvas class="vms-tile-canvas" id="canvas-cam-1"></canvas>
+                  <div class="vms-tile-overlay">
+                    <span>CAM-01 [NORTH GATE]</span>
+                    <span class="vms-live-badge">● LIVE</span>
+                  </div>
+                </div>
+                <!-- Cam 2 -->
+                <div class="vms-cam-tile" data-cam="CAM-02">
+                  <canvas class="vms-tile-canvas" id="canvas-cam-2"></canvas>
+                  <div class="vms-tile-overlay">
+                    <span>CAM-02 [PARKING B]</span>
+                    <span class="vms-live-badge">● LIVE</span>
+                  </div>
+                </div>
+                <!-- Cam 3 -->
+                <div class="vms-cam-tile" data-cam="CAM-03">
+                  <canvas class="vms-tile-canvas" id="canvas-cam-3"></canvas>
+                  <div class="vms-tile-overlay">
+                    <span>CAM-03 [PERIMETER]</span>
+                    <span class="vms-live-badge">● LIVE</span>
+                  </div>
+                </div>
+                <!-- Cam 4 -->
+                <div class="vms-cam-tile" data-cam="CAM-04">
+                  <canvas class="vms-tile-canvas" id="canvas-cam-4"></canvas>
+                  <div class="vms-tile-overlay">
+                    <span>CAM-04 [WAREHOUSE]</span>
+                    <span class="vms-live-badge">● LIVE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <!-- PTZ Keypad -->
+              <div class="ptz-control-bar">
+                <div>
+                  <span style="color:var(--text-muted); font-size:0.68rem; display:block;">PTZ CONTROL: <span
+                      id="selected-cam-name" style="color:var(--color-cyan);">CAM-01</span></span>
+                  <span id="ptz-coord-readout" style="font-size:0.68rem; color:var(--text-secondary);">PAN: +0.0° |
+                    TILT: +0.0°</span>
+                </div>
+                <div class="ptz-btn-cluster" aria-label="PTZ Direction Controls">
+                  <span></span>
+                  <button class="ptz-btn" id="ptz-up" title="Tilt Up">▲</button>
+                  <span></span>
+                  <button class="ptz-btn" id="ptz-left" title="Pan Left">◀</button>
+                  <button class="ptz-btn" id="ptz-center" title="Center">●</button>
+                  <button class="ptz-btn" id="ptz-right" title="Pan Right">▶</button>
+                  <span></span>
+                  <button class="ptz-btn" id="ptz-down" title="Tilt Down">▼</button>
+                  <span></span>
+                </div>
+              </div>
+
+              <!-- Alarm Event Feed -->
+              <div class="vms-alert-feed" id="vms-alert-feed" aria-live="polite">
+                <div>[00:00:01] ONVIF Device Handshake: CAM-01 OK</div>
+                <div>[00:00:03] RTSP Stream Configured: MediaMTX Active</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulation C: Iris Quality Gauge -->
+          <div class="lab-panel" id="panel-sim-iris">
+            <div>
+              <div class="lab-panel-header">
+                <span class="lab-panel-sub">VISIONTEK HMI ARCHITECTURE</span>
+                <h3 class="lab-panel-title">Iris Capture Quality Gauge</h3>
+                <div class="sim-disclaimer">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                  </svg>
+                  Simulated demo, not real data.
+                </div>
+              </div>
+
+              <div class="iris-status-badge">
+                <span class="status-led" style="width:6px;height:6px;"></span>
+                <span id="iris-connection-state">IDDK SDK // SENSOR READY</span>
+              </div>
+
+              <!-- Reticle & Gauge Stage -->
+              <div class="iris-simulation-stage">
+                <svg class="iris-reticle-svg" viewBox="0 0 140 140">
+                  <circle cx="70" cy="70" r="62" stroke="var(--border-dim)" stroke-width="2" fill="none" />
+                  <circle cx="70" cy="70" r="50" stroke="var(--color-cyan)" stroke-dasharray="4 4" stroke-width="1.5"
+                    fill="none" opacity="0.6" />
+                  <circle cx="70" cy="70" r="30" stroke="var(--color-teal)" stroke-width="2" fill="none" />
+                  <!-- Crosshairs -->
+                  <line x1="70" y1="4" x2="70" y2="136" stroke="var(--border-dim)" stroke-width="1" />
+                  <line x1="4" y1="70" x2="136" y2="70" stroke="var(--border-dim)" stroke-width="1" />
+                </svg>
+
+                <div class="iris-quality-readout">
+                  <div class="quality-score-num" id="iris-score-num">94</div>
+                  <div class="quality-score-label">QUALITY SCORE / 100</div>
+                </div>
+              </div>
+
+              <!-- Metrics Row -->
+              <div class="iris-metrics-row">
+                <div class="iris-metric-box">
+                  <span style="color:var(--text-muted); font-size:0.68rem; display:block;">USABLE AREA</span>
+                  <span style="color:var(--text-primary); font-weight:600;" id="iris-usable-area">88%</span>
+                </div>
+                <div class="iris-metric-box">
+                  <span style="color:var(--text-muted); font-size:0.68rem; display:block;">FRAME EXPORT</span>
+                  <span style="color:var(--color-cyan); font-weight:600;">ISO/IEC K7</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Button -->
+            <button class="btn-capture-frame" id="btn-capture-frame">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path
+                  d="M12 15c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0-8c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+              </svg>
+              <span>CAPTURE FRAME</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- ==========================================================================
+             TERMINAL CONSOLE (INTERACTIVE WIDGET)
+             ========================================================================== -->
+        <div class="terminal-wrap">
+          <div class="terminal-card">
+            <div class="terminal-title-bar">
+              <div class="term-dots">
+                <span class="term-dot red"></span>
+                <span class="term-dot yellow"></span>
+                <span class="term-dot green"></span>
+              </div>
+              <span class="term-title-text">jenil@sys-console: ~ // v3.2.0-session</span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-green);">CONNECTED</span>
+            </div>
+
+            <!-- Preset Commands for Mobile -->
+            <div class="term-preset-buttons" role="group" aria-label="Terminal Preset Buttons">
+              <button class="btn-term-preset" data-cmd="help">help</button>
+              <button class="btn-term-preset" data-cmd="about">about</button>
+              <button class="btn-term-preset" data-cmd="skills">skills</button>
+              <button class="btn-term-preset" data-cmd="projects">projects</button>
+              <button class="btn-term-preset" data-cmd="experience">experience</button>
+              <button class="btn-term-preset" data-cmd="education">education</button>
+              <button class="btn-term-preset" data-cmd="contact">contact</button>
+              <button class="btn-term-preset" data-cmd="resume">resume</button>
+              <button class="btn-term-preset" data-cmd="clear">clear</button>
+            </div>
+
+            <!-- Terminal Output Buffer -->
+            <div class="terminal-body" id="terminal-body" role="region" aria-label="Console Buffer">
+              <div class="terminal-line" style="color:var(--text-muted);">
+                Welcome to Jenil Patel's Systems Engineering Console.<br>
+                Type '<span style="color:var(--color-cyan);">help</span>' or click the buttons above to query data
+                points.
+              </div>
+              <div id="terminal-history"></div>
+
+              <div class="term-prompt-line">
+                <span class="term-prompt-symbol">jenil@sys-console:~$</span>
+                <input type="text" class="terminal-input" id="terminal-input"
+                  placeholder="type command (e.g. skills, projects)..." autocomplete="off" autocorrect="off"
+                  autocapitalize="off" spellcheck="false" aria-label="Terminal input prompt">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SKILLS SECTION (GROUPED CATEGORIES & TIERS)
+         ========================================================================== -->
+    <section id="skills" class="section-wrap">
+      <div class="container">
+        <div class="section-header-box">
+          <span class="section-bracket">[ 04 // TECHNICAL SPECIFICATION ]</span>
+          <h2 class="section-title">Technical Skills & Tooling</h2>
+          <p class="section-desc">Grouped competencies and protocol proficiencies verified across production desktop,
+            SCADA/HMI, and embedded deployments.</p>
+        </div>
+
+        <div class="skills-matrix-grid">
+
+          <!-- Card 1: Languages -->
+          <div class="skills-group-card">
+            <div class="skills-group-header">
+              <span class="status-led" style="width:6px;height:6px;"></span>
+              <h3 class="skills-group-title">LANGUAGES</h3>
+            </div>
+            <div class="skills-tags-list">
+              <span class="skill-badge core">C++ (Modern / Multithreaded)</span>
+              <span class="skill-badge core">C</span>
+              <span class="skill-badge core">Embedded C</span>
+              <span class="skill-badge core">QML</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">Java</span>
+              <span class="skill-badge">CAPL Scripting</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Frameworks & Libraries -->
+          <div class="skills-group-card">
+            <div class="skills-group-header">
+              <span class="status-led" style="width:6px;height:6px;"></span>
+              <h3 class="skills-group-title">FRAMEWORKS & LIBRARIES</h3>
+            </div>
+            <div class="skills-tags-list">
+              <span class="skill-badge core">Qt 5.15 / Qt 6</span>
+              <span class="skill-badge core">QML / Qt Quick</span>
+              <span class="skill-badge core">Qt Widgets</span>
+              <span class="skill-badge">Qt Multimedia</span>
+              <span class="skill-badge">Qt SerialPort</span>
+              <span class="skill-badge">Qt gRPC & Protobuf</span>
+              <span class="skill-badge">Qt SQL</span>
+              <span class="skill-badge core">OpenCV</span>
+              <span class="skill-badge">FFmpeg</span>
+              <span class="skill-badge">GStreamer</span>
+              <span class="skill-badge">Android SDK</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Protocols & Communication -->
+          <div class="skills-group-card">
+            <div class="skills-group-header">
+              <span class="status-led" style="width:6px;height:6px;"></span>
+              <h3 class="skills-group-title">PROTOCOLS & COMMUNICATION</h3>
+            </div>
+            <div class="skills-tags-list">
+              <span class="skill-badge core">gRPC</span>
+              <span class="skill-badge core">Protobuf</span>
+              <span class="skill-badge core">RTSP</span>
+              <span class="skill-badge">ONVIF</span>
+              <span class="skill-badge core">Modbus (TCP / RTU)</span>
+              <span class="skill-badge core">OPC UA</span>
+              <span class="skill-badge">MQTT</span>
+              <span class="skill-badge core">CAN Protocol</span>
+              <span class="skill-badge">UART</span>
+              <span class="skill-badge">SPI</span>
+              <span class="skill-badge">I2C</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Databases & Security -->
+          <div class="skills-group-card">
+            <div class="skills-group-header">
+              <span class="status-led" style="width:6px;height:6px;"></span>
+              <h3 class="skills-group-title">DATABASES & SECURITY</h3>
+            </div>
+            <div class="skills-tags-list">
+              <span class="skill-badge core">SQLite</span>
+              <span class="skill-badge core">SQLCipher (Encrypted Storage)</span>
+              <span class="skill-badge">PostgreSQL</span>
+              <span class="skill-badge">JWT Authentication</span>
+              <span class="skill-badge">IP Filtering Controls</span>
+              <span class="skill-badge">Screen Protection Controls</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Build, DevOps & Testing -->
+          <div class="skills-group-card">
+            <div class="skills-group-header">
+              <span class="status-led" style="width:6px;height:6px;"></span>
+              <h3 class="skills-group-title">BUILD, DEVOPS & TESTING</h3>
+            </div>
+            <div class="skills-tags-list">
+              <span class="skill-badge core">CMake</span>
+              <span class="skill-badge core">Azure DevOps CI/CD</span>
+              <span class="skill-badge">Docker</span>
+              <span class="skill-badge">Git</span>
+              <span class="skill-badge">CTest Suites</span>
+              <span class="skill-badge">windeployqt</span>
+              <span class="skill-badge">Inno Setup Packaging</span>
+              <span class="skill-badge">Linux AppImage</span>
+              <span class="skill-badge core">ARM Cross-Compilation</span>
+              <span class="skill-badge">Keil uVision5</span>
+              <span class="skill-badge">Proteus 8</span>
+            </div>
+          </div>
+
+          <!-- Card 6: Concepts & Platforms -->
+          <div class="skills-group-card">
+            <div class="skills-group-header">
+              <span class="status-led" style="width:6px;height:6px;"></span>
+              <h3 class="skills-group-title">CONCEPTS & PLATFORMS</h3>
+            </div>
+            <div class="skills-tags-list">
+              <span class="skill-badge core">Multithreading</span>
+              <span class="skill-badge core">Real-Time Systems</span>
+              <span class="skill-badge core">SCADA / HMI Architecture</span>
+              <span class="skill-badge">Video Streaming Pipelines</span>
+              <span class="skill-badge">Object-Oriented Programming</span>
+              <span class="skill-badge">Data Structures</span>
+              <span class="skill-badge core">Hardware-Software Integration</span>
+              <span class="skill-badge">Embedded Linux</span>
+              <span class="skill-badge">Linux (Ubuntu)</span>
+              <span class="skill-badge">Windows</span>
+              <span class="skill-badge">LPC2129 (ARM7)</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EXPERIENCE SECTION (ALL 4 ROLES IN VERTICAL TIMELINE)
+         ========================================================================== -->
+    <section id="experience" class="section-wrap">
+      <div class="container">
+        <div class="section-header-box">
+          <span class="section-bracket">[ 05 // CAREER PROGRESSION ]</span>
+          <h2 class="section-title">Work Experience</h2>
+          <p class="section-desc">Track record of engineering systems software across desktop, industrial automation,
+            embedded microcontrollers, and mobile.</p>
+        </div>
+
+        <div class="timeline-container">
+
+          <!-- Role 1: Digital Shark Technology -->
+          <div class="timeline-node">
+            <div class="timeline-card">
+              <div class="timeline-role-row">
+                <div>
+                  <h3 class="timeline-role-title">Software Developer (Qt/QML | C++)</h3>
+                  <div class="timeline-company">Digital Shark Technology Pvt. Ltd. | Bengaluru, Karnataka</div>
+                </div>
+                <span class="timeline-period-badge">Aug 2025 – Present</span>
+              </div>
+              <ul class="timeline-details-list">
+                <li>Developing high-performance enterprise desktop and industrial systems software in C/C++, Qt 5/6, and
+                  QML.</li>
+                <li>Key engineering contributor to three core flagship products: Hi-Focus VMS, SharkView SCADA/HMI
+                  platform, and the Visiontek Iris-Scanner HMI.</li>
+                <li>Responsible for multithreaded video pipelines, 15+ industrial protocol drivers, hardware SDK
+                  integrations, and automated Azure DevOps CI/CD packaging.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Role 2: Vector India -->
+          <div class="timeline-node">
+            <div class="timeline-card">
+              <div class="timeline-role-row">
+                <div>
+                  <h3 class="timeline-role-title">Embedded Systems Trainee</h3>
+                  <div class="timeline-company">Vector India Private Limited | Bengaluru, Karnataka</div>
+                </div>
+                <span class="timeline-period-badge">Nov 2024 – Aug 2025</span>
+              </div>
+              <ul class="timeline-details-list">
+                <li>Completed advanced training in embedded systems: microcontroller programming, RTOS concepts, and
+                  automotive protocol integration.</li>
+                <li>Built hands-on projects on the LPC2129 (ARM7) with hardware interfacing over UART, I2C, SPI, and
+                  CAN.</li>
+                <li>Applied C, C++, Embedded C, and CAPL scripting for automotive ECU testing and network simulation;
+                  used Linux for cross-compilation and debugging.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Role 3: Invica Infotech -->
+          <div class="timeline-node">
+            <div class="timeline-card">
+              <div class="timeline-role-row">
+                <div>
+                  <h3 class="timeline-role-title">Android Application Developer</h3>
+                  <div class="timeline-company">Invica Infotech | Surat, Gujarat</div>
+                </div>
+                <span class="timeline-period-badge">Sep 2023 – Aug 2024</span>
+              </div>
+              <ul class="timeline-details-list">
+                <li>Built a cross-platform Poster Maker mobile app in React Native with customizable templates,
+                  drag-and-drop tools, and layer management.</li>
+                <li>Delivered responsive UI with reusable components; enabled high-resolution export and social sharing.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Role 4: Prime Apps Infotech -->
+          <div class="timeline-node">
+            <div class="timeline-card">
+              <div class="timeline-role-row">
+                <div>
+                  <h3 class="timeline-role-title">Android Developer Intern</h3>
+                  <div class="timeline-company">Prime Apps Infotech | Ahmedabad, Gujarat</div>
+                </div>
+                <span class="timeline-period-badge">Dec 2022 – May 2023</span>
+              </div>
+              <ul class="timeline-details-list">
+                <li>Developed a real-time chat application in Java with text messaging, photo sharing, message
+                  reactions, biometric login, and group chats.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Education Card -->
+        <div style="margin-top: 40px;">
+          <div class="section-header-box" style="margin-bottom:20px;">
+            <span class="section-bracket">[ 06 // ACADEMIC FOUNDATION ]</span>
+            <h2 class="section-title">Education</h2>
+          </div>
+
+          <div class="edu-card">
+            <h3 class="edu-title">B.Tech in Computer Engineering</h3>
+            <div class="edu-meta">Dharmsinh Desai University, Nadiad, Gujarat | 2019 – 2023 | CGPA: 8.07 / 10</div>
+            <p style="color:var(--text-secondary); font-size:0.94rem;">
+              Comprehensive foundation in computer architecture, data structures & algorithms, operating systems,
+              object-oriented design, and systems programming.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT SECTION ("COMMUNICATION BUS")
+         ========================================================================== -->
+    <section id="contact" class="section-wrap">
+      <div class="container">
+        <div class="section-header-box">
+          <span class="section-bracket">[ 07 // DISPATCH & COMMS ]</span>
+          <h2 class="section-title">Communication Bus & Inquiries</h2>
+          <p class="section-desc">Available for software developer positions, Qt/QML engineering roles, and
+            high-reliability C++ systems initiatives.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Direct Details -->
+          <div class="contact-info-card">
+            <div>
+              <div class="chips-group-title" style="margin-bottom:18px;">Direct Communication Channels</div>
+
+              <div class="contact-items-list">
+                <!-- Email -->
+                <div class="contact-entry">
+                  <div class="contact-icon-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-label-sub">DIRECT EMAIL</div>
+                    <a href="mailto:pateljenil1451@gmail.com" class="contact-val-link">pateljenil1451@gmail.com</a>
+                  </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="contact-entry">
+                  <div class="contact-icon-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path
+                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-label-sub">DIRECT COMMS</div>
+                    <a href="tel:+919327811078" class="contact-val-link">+91-93278 11078</a>
+                  </div>
+                </div>
+
+                <!-- LinkedIn (Clean Text Link Redirect) -->
+                <div class="contact-entry">
+                  <div class="contact-icon-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path
+                        d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-label-sub">PROFESSIONAL PROFILE</div>
+                    <a href="https://www.linkedin.com/in/jenil-p-a92871233" target="_blank" rel="noopener noreferrer"
+                      class="contact-val-link">
+                      LinkedIn ↗
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Location -->
+                <div class="contact-entry">
+                  <div class="contact-icon-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-label-sub">OPERATING REGION</div>
+                    <span class="contact-val-link">Bengaluru, Karnataka, India</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-actions-bar">
+              <a href="mailto:pateljenil1451@gmail.com" class="btn-sys btn-sys-primary">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                Send Email
+              </a>
+              <a href="Jenil_Patel_Resume.pdf" download class="btn-sys btn-sys-secondary">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                </svg>
+                Download Resume
+              </a>
+            </div>
+          </div>
+
+          <!-- Direct In-Page Mail Dispatch -->
+          <div class="dispatch-card">
+            <div class="chips-group-title" style="margin-bottom:18px;">Dispatch Transmission Form</div>
+            <form class="dispatch-form" id="contact-form" onsubmit="handleDispatchSubmit(event)">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Full Name / Organization</label>
+                <input type="text" id="contact-name" class="form-control"
+                  placeholder="e.g. Engineering Lead / Recruiter" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-email">Reply Email</label>
+                <input type="email" id="contact-email" class="form-control" placeholder="name@company.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-subject">Topic / Position</label>
+                <input type="text" id="contact-subject" class="form-control"
+                  placeholder="e.g. Qt/C++ Developer Opportunity" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-message">Message Details</label>
+                <textarea id="contact-message" class="form-control"
+                  placeholder="Provide details regarding the project scope or role requirements..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-sys btn-sys-primary" style="justify-content:center; width:100%;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                </svg>
+                Dispatch via Mail Client
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER & BACK TO TOP
+       ========================================================================== -->
+  <footer class="footer-wrap" role="contentinfo">
+    <div class="container footer-inner">
+      <div>
+        <span>JENIL PATEL // SYSTEMS CONSOLE</span>
+        <span style="margin:0 8px;">|</span>
+        <span>Built with clean HTML, CSS & Vanilla JS.</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:16px;">
+        <a href="https://www.linkedin.com/in/jenil-p-a92871233" target="_blank" rel="noopener noreferrer"
+          style="color:var(--text-mono-accent);">LinkedIn ↗</a>
+        <a href="mailto:pateljenil1451@gmail.com" style="color:var(--text-mono-accent);">Email</a>
+        <button class="btn-back-to-top" id="btn-back-to-top" aria-label="Back to Top">
+          ▲ TOP
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       CLIENT-SIDE JAVASCRIPT (SYSTEMS TELEMETRY, LAB, TERMINAL)
+       ========================================================================== -->
+  <script>
+    /* --------------------------------------------------------------------------
+       1. GLOBAL STATE & THEME ENGINE
+       -------------------------------------------------------------------------- */
+    const STATE = {
+      theme: 'dark',
+      simulationsActive: true,
+      activeProtocol: 'Modbus TCP',
+      scada: {
+        Tank_Level: 68.4,
+        Line_Pressure: 4.2,
+        Valve_02_Position: 45.0,
+        Pump_01_Status: 'RUN',
+        trendHistory: [65, 66, 67, 68, 68.4],
+        alarmState: 'normal' // 'normal', 'active', 'acked'
+      },
+      vms: {
+        layout: '2x2',
+        selectedCam: 'CAM-01',
+        ptz: { pan: 0.0, tilt: 0.0, zoom: 1.0 },
+        cams: [
+          { id: 'CAM-01', name: 'NORTH GATE', angle: 0 },
+          { id: 'CAM-02', name: 'PARKING B', angle: 0 },
+          { id: 'CAM-03', name: 'PERIMETER', angle: 0 },
+          { id: 'CAM-04', name: 'WAREHOUSE', angle: 0 }
+        ]
+      },
+      iris: {
+        score: 94,
+        usable: 88,
+        state: 'ready'
+      }
+    };
+
+    // Theme toggler
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeBtnLabel = document.getElementById('theme-btn-label');
+
+    function applyTheme(theme) {
+      STATE.theme = theme;
+      document.documentElement.setAttribute('data-theme', theme);
+      if (themeBtnLabel) {
+        themeBtnLabel.textContent = `THEME: ${theme.toUpperCase()}`;
+      }
+      localStorage.setItem('sys_console_theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('sys_console_theme') ||
+      (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      applyTheme(STATE.theme === 'dark' ? 'light' : 'dark');
+    });
+
+    // Mobile nav toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('mobile-open');
+      mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Close mobile nav on click
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('mobile-open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll progress line & Scrollspy
+    const scrollProgressFill = document.getElementById('scroll-progress-fill');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      scrollProgressFill.style.width = scrolled + '%';
+
+      // Active section highlight
+      let currentSection = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (winScroll >= top) {
+          currentSection = sec.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-nav') === currentSection);
+      });
+    }, { passive: true });
+
+    // Back to top button
+    document.getElementById('btn-back-to-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // UTC live clock in status panel
+    const liveSysClock = document.getElementById('live-sys-clock');
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getUTCHours()).padStart(2, '0');
+      const m = String(now.getUTCMinutes()).padStart(2, '0');
+      const s = String(now.getUTCSeconds()).padStart(2, '0');
+      if (liveSysClock) {
+        liveSysClock.textContent = `UTC ${h}:${m}:${s}`;
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    /* --------------------------------------------------------------------------
+       2. TYPEWRITER EFFECT
+       -------------------------------------------------------------------------- */
+    const taglineElement = document.getElementById('typewriter-text');
+    const taglineString = "Engineering high-reliability Qt/QML & C++ industrial, video and embedded software.";
+    let typeIdx = 0;
+    let isDeleting = false;
+
+    function runTypewriter() {
+      if (!taglineElement) return;
+      if (!isDeleting && typeIdx <= taglineString.length) {
+        taglineElement.textContent = taglineString.substring(0, typeIdx);
+        typeIdx++;
+        setTimeout(runTypewriter, 40);
+      } else if (!isDeleting && typeIdx > taglineString.length) {
+        setTimeout(() => { isDeleting = true; runTypewriter(); }, 6000);
+      } else if (isDeleting && typeIdx > 0) {
+        taglineElement.textContent = taglineString.substring(0, typeIdx);
+        typeIdx--;
+        setTimeout(runTypewriter, 20);
+      } else {
+        isDeleting = false;
+        setTimeout(runTypewriter, 500);
+      }
+    }
+    setTimeout(runTypewriter, 400);
+
+    /* --------------------------------------------------------------------------
+       3. INTERSECTION OBSERVER FOR PERFORMANCE (PAUSE LAB WHEN OFF-SCREEN)
+       -------------------------------------------------------------------------- */
+    const labSection = document.getElementById('lab');
+    const labObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        STATE.simulationsActive = entry.isIntersecting && document.visibilityState === 'visible';
+      });
+    }, { threshold: 0.1 });
+
+    if (labSection) {
+      labObserver.observe(labSection);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      STATE.simulationsActive = document.visibilityState === 'visible' &&
+        (labSection ? labSection.getBoundingClientRect().top < window.innerHeight : true);
+    });
+
+    /* --------------------------------------------------------------------------
+       4. LAB A: SCADA TELEMETRY SIMULATOR
+       -------------------------------------------------------------------------- */
+    // Protocol selector chips
+    const protoChips = document.querySelectorAll('.proto-chip[data-proto]');
+    protoChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        protoChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        STATE.activeProtocol = chip.getAttribute('data-proto');
+        addTerminalOutput(`[SCADA] Active Protocol switched to: ${STATE.activeProtocol}`);
+      });
+    });
+
+    // Tag table elements
+    const valTank = document.getElementById('val-Tank_Level');
+    const valPress = document.getElementById('val-Line_Pressure');
+    const valValve = document.getElementById('val-Valve_02_Position');
+    const valPump = document.getElementById('val-Pump_01_Status');
+    const alarmPill = document.getElementById('alarm-pill');
+    const alarmMsg = document.getElementById('alarm-message');
+    const btnAck = document.getElementById('btn-ack-alarm');
+
+    // Trend Canvas
+    const trendCanvas = document.getElementById('trend-canvas');
+    const trendCtx = trendCanvas ? trendCanvas.getContext('2d') : null;
+
+    function renderTrendChart() {
+      if (!trendCtx || !trendCanvas) return;
+      const w = trendCanvas.width;
+      const h = trendCanvas.height;
+      trendCtx.clearRect(0, 0, w, h);
+
+      // Grid line
+      trendCtx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      trendCtx.lineWidth = 1;
+      trendCtx.beginPath();
+      trendCtx.moveTo(0, h * 0.25);
+      trendCtx.lineTo(w, h * 0.25);
+      trendCtx.moveTo(0, h * 0.5);
+      trendCtx.lineTo(w, h * 0.5);
+      trendCtx.moveTo(0, h * 0.75);
+      trendCtx.lineTo(w, h * 0.75);
+      trendCtx.stroke();
+
+      // Trend Line
+      const pts = STATE.scada.trendHistory;
+      if (pts.length < 2) return;
+
+      trendCtx.beginPath();
+      const step = w / (pts.length - 1);
+      pts.forEach((val, i) => {
+        // Map 40..90% to height
+        const norm = (val - 40) / 50;
+        const y = h - (norm * (h - 14) + 7);
+        const x = i * step;
+        if (i === 0) trendCtx.moveTo(x, y);
+        else trendCtx.lineTo(x, y);
+      });
+
+      trendCtx.strokeStyle = STATE.scada.alarmState === 'active' ? '#ef4444' : '#00f0ff';
+      trendCtx.lineWidth = 2;
+      trendCtx.stroke();
+    }
+
+    // Acknowledge alarm
+    btnAck.addEventListener('click', () => {
+      if (STATE.scada.alarmState === 'active') {
+        STATE.scada.alarmState = 'acked';
+        alarmPill.className = 'alarm-status-pill acked';
+        alarmPill.textContent = 'ACKNOWLEDGED';
+        alarmMsg.textContent = 'Operator acknowledged high level warning.';
+      }
+    });
+
+    // SCADA 1-Second Telemetry Loop
+    setInterval(() => {
+      if (!STATE.simulationsActive) return;
+
+      // Random-walk for Tank_Level (45% to 88%)
+      const deltaTank = (Math.random() - 0.48) * 2.2;
+      STATE.scada.Tank_Level = Math.max(45, Math.min(88, STATE.scada.Tank_Level + deltaTank));
+      valTank.textContent = STATE.scada.Tank_Level.toFixed(1);
+
+      // Line pressure (3.9 to 5.4 bar)
+      const deltaPress = (Math.random() - 0.5) * 0.15;
+      STATE.scada.Line_Pressure = Math.max(3.9, Math.min(5.4, STATE.scada.Line_Pressure + deltaPress));
+      valPress.textContent = STATE.scada.Line_Pressure.toFixed(1);
+
+      // Valve position (40% to 60%)
+      const deltaValve = (Math.random() - 0.5) * 1.5;
+      STATE.scada.Valve_02_Position = Math.max(30, Math.min(70, STATE.scada.Valve_02_Position + deltaValve));
+      valValve.textContent = STATE.scada.Valve_02_Position.toFixed(1);
+
+      // Trend history push
+      STATE.scada.trendHistory.push(STATE.scada.Tank_Level);
+      if (STATE.scada.trendHistory.length > 25) {
+        STATE.scada.trendHistory.shift();
+      }
+      renderTrendChart();
+
+      // ISA-18.2 Alarm logic
+      if (STATE.scada.Tank_Level > 80.0) {
+        if (STATE.scada.alarmState === 'normal') {
+          STATE.scada.alarmState = 'active';
+          alarmPill.className = 'alarm-status-pill active';
+          alarmPill.textContent = 'UNACK ALARM';
+          alarmMsg.textContent = 'HIGH LEVEL TRIPPOINT EXCEEDED (>80%)';
+        }
+      } else {
+        if (STATE.scada.alarmState !== 'normal') {
+          STATE.scada.alarmState = 'normal';
+          alarmPill.className = 'alarm-status-pill normal';
+          alarmPill.textContent = 'CLEARED';
+          alarmMsg.textContent = 'Process within normal bounds';
+        }
+      }
+    }, 1000);
+
+    /* --------------------------------------------------------------------------
+       5. LAB B: VMS VIDEO WALL MOCK
+       -------------------------------------------------------------------------- */
+    const camCanvases = [
+      document.getElementById('canvas-cam-1'),
+      document.getElementById('canvas-cam-2'),
+      document.getElementById('canvas-cam-3'),
+      document.getElementById('canvas-cam-4')
+    ];
+    const camTiles = document.querySelectorAll('.vms-cam-tile');
+    const selectedCamNameEl = document.getElementById('selected-cam-name');
+    const ptzCoordReadout = document.getElementById('ptz-coord-readout');
+    const vmsAlertFeed = document.getElementById('vms-alert-feed');
+
+    // Camera tile selection
+    camTiles.forEach(tile => {
+      tile.addEventListener('click', () => {
+        camTiles.forEach(t => t.classList.remove('selected'));
+        tile.classList.add('selected');
+        STATE.vms.selectedCam = tile.getAttribute('data-cam');
+        selectedCamNameEl.textContent = STATE.vms.selectedCam;
+      });
+    });
+
+    // PTZ buttons
+    function updatePtzDisplay() {
+      const p = STATE.vms.ptz;
+      ptzCoordReadout.textContent = `PAN: ${p.pan >= 0 ? '+' : ''}${p.pan.toFixed(1)}° | TILT: ${p.tilt >= 0 ? '+' : ''}${p.tilt.toFixed(1)}°`;
+    }
+
+    document.getElementById('ptz-up').addEventListener('click', () => { STATE.vms.ptz.tilt += 2.5; updatePtzDisplay(); });
+    document.getElementById('ptz-down').addEventListener('click', () => { STATE.vms.ptz.tilt -= 2.5; updatePtzDisplay(); });
+    document.getElementById('ptz-left').addEventListener('click', () => { STATE.vms.ptz.pan -= 2.5; updatePtzDisplay(); });
+    document.getElementById('ptz-right').addEventListener('click', () => { STATE.vms.ptz.pan += 2.5; updatePtzDisplay(); });
+    document.getElementById('ptz-center').addEventListener('click', () => { STATE.vms.ptz.pan = 0; STATE.vms.ptz.tilt = 0; updatePtzDisplay(); });
+
+    // Grid layout switcher
+    const btnGrid2x2 = document.getElementById('btn-grid-2x2');
+    const btnGrid3x3 = document.getElementById('btn-grid-3x3');
+    const vmsGridEl = document.getElementById('vms-grid');
+
+    btnGrid2x2.addEventListener('click', () => {
+      btnGrid2x2.classList.add('active');
+      btnGrid3x3.classList.remove('active');
+      vmsGridEl.className = 'vms-grid-container grid-2x2';
+    });
+    btnGrid3x3.addEventListener('click', () => {
+      btnGrid3x3.classList.add('active');
+      btnGrid2x2.classList.remove('active');
+      vmsGridEl.className = 'vms-grid-container grid-3x3';
+    });
+
+    // Procedural animated camera canvases (radar sweep / surveillance reticle)
+    let camSweepAngle = 0;
+    function drawCamTiles() {
+      if (STATE.simulationsActive) {
+        camSweepAngle += 0.03;
+        camCanvases.forEach((c, idx) => {
+          if (!c) return;
+          const ctx = c.getContext('2d');
+          const w = c.width = c.parentElement.clientWidth || 140;
+          const h = c.height = c.parentElement.clientHeight || 90;
+
+          // Dark feed background
+          ctx.fillStyle = '#080e18';
+          ctx.fillRect(0, 0, w, h);
+
+          // Grid lines
+          ctx.strokeStyle = 'rgba(14, 165, 233, 0.15)';
+          ctx.lineWidth = 1;
+          for (let x = 0; x < w; x += 24) {
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+          }
+          for (let y = 0; y < h; y += 24) {
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+          }
+
+          // Simulated PTZ offset on selected camera
+          const isSelected = STATE.vms.selectedCam === `CAM-0${idx + 1}`;
+          const ox = isSelected ? STATE.vms.ptz.pan * 1.5 : 0;
+          const oy = isSelected ? -STATE.vms.ptz.tilt * 1.5 : 0;
+
+          // Animated tracking reticle
+          const cx = (w / 2) + Math.cos(camSweepAngle + idx) * 20 + ox;
+          const cy = (h / 2) + Math.sin(camSweepAngle + idx) * 12 + oy;
+
+          ctx.strokeStyle = isSelected ? '#00f0ff' : '#10b981';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(cx - 16, cy - 12, 32, 24);
+
+          ctx.fillStyle = isSelected ? '#00f0ff' : '#10b981';
+          ctx.font = '8px monospace';
+          ctx.fillText(`OBJ_${idx + 1}: 98%`, cx - 16, cy - 15);
+        });
+      }
+      requestAnimationFrame(drawCamTiles);
+    }
+    requestAnimationFrame(drawCamTiles);
+
+    // Simulated VMS Alarm Stream appends
+    const vmsEvents = [
+      "Tripwire Crossed - Zone A (CAM-03)",
+      "Motion Detected: North Loading Dock",
+      "MediaMTX Feed Re-synced (CAM-02)",
+      "ONVIF Device Heartbeat Acknowledged",
+      "PTZ Preset 04 Engaged by Operator"
+    ];
+    let vmsEventIdx = 0;
+    setInterval(() => {
+      if (!STATE.simulationsActive || !vmsAlertFeed) return;
+      const now = new Date();
+      const timeStr = now.toTimeString().split(' ')[0];
+      const newEntry = document.createElement('div');
+      newEntry.textContent = `[${timeStr}] ${vmsEvents[vmsEventIdx % vmsEvents.length]}`;
+      vmsAlertFeed.prepend(newEntry);
+      vmsEventIdx++;
+      if (vmsAlertFeed.children.length > 8) {
+        vmsAlertFeed.removeChild(vmsAlertFeed.lastChild);
+      }
+    }, 4500);
+
+    /* --------------------------------------------------------------------------
+       6. LAB C: IRIS CAPTURE QUALITY GAUGE
+       -------------------------------------------------------------------------- */
+    const btnCaptureFrame = document.getElementById('btn-capture-frame');
+    const irisScoreNum = document.getElementById('iris-score-num');
+    const irisUsableArea = document.getElementById('iris-usable-area');
+    const irisConnState = document.getElementById('iris-connection-state');
+
+    btnCaptureFrame.addEventListener('click', () => {
+      if (STATE.iris.state === 'capturing') return;
+      STATE.iris.state = 'capturing';
+
+      irisConnState.textContent = 'IDDK SDK // CAPTURING FRAME...';
+      irisConnState.style.color = 'var(--color-amber)';
+      btnCaptureFrame.disabled = true;
+
+      let flicker = 0;
+      const interval = setInterval(() => {
+        irisScoreNum.textContent = Math.floor(60 + Math.random() * 38);
+        flicker++;
+        if (flicker > 6) {
+          clearInterval(interval);
+          const finalScore = Math.floor(88 + Math.random() * 11);
+          const finalUsable = Math.floor(82 + Math.random() * 14);
+
+          irisScoreNum.textContent = finalScore;
+          irisUsableArea.textContent = finalUsable + '%';
+          irisConnState.textContent = 'EVALUATION SUCCESS // K7 EXPORTED';
+          irisConnState.style.color = 'var(--color-green)';
+          btnCaptureFrame.disabled = false;
+          STATE.iris.state = 'ready';
+
+          addTerminalOutput(`[VISIONTEK] Iris Capture Complete: Quality=${finalScore}/100, UsableArea=${finalUsable}%`);
+        }
+      }, 80);
+    });
+
+    /* --------------------------------------------------------------------------
+       7. TERMINAL CONSOLE ENGINE
+       -------------------------------------------------------------------------- */
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalHistory = document.getElementById('terminal-history');
+    const terminalBody = document.getElementById('terminal-body');
+
+    const COMMANDS = {
+      help: `AVAILABLE COMMANDS:
+  about       - Professional background & engineering summary
+  skills      - Categorized technical stack and protocols
+  projects    - Production platforms (VMS, SCADA/HMI, Iris HMI)
+  experience  - Career timeline across all 4 roles
+  education   - Degree, University and academic details
+  contact     - Direct communication channels & links
+  resume      - Download 'Jenil_Patel_Resume.pdf'
+  theme       - Toggle Light / Dark control room theme
+  clear       - Clear the terminal buffer`,
+
+      about: `SUMMARY:
+  Software Developer with 3+ years of experience building performance-critical
+  desktop, industrial and embedded software in C/C++, Qt 5/6 and QML.
+  At Digital Shark Technology, develops an enterprise Video Management System (VMS),
+  a SCADA/HMI platform with 15+ industrial protocol drivers, and a biometric iris-scanner HMI.`,
+
+      skills: `TECHNICAL SPECIFICATION:
+  • Languages: C++, C, Embedded C, QML, JavaScript, Python, Java, CAPL
+  • Frameworks: Qt 5.15/6 (QML, Widgets, Quick, Multimedia, SerialPort, gRPC/Protobuf, SQL), OpenCV, FFmpeg, GStreamer
+  • Protocols: gRPC, Protobuf, RTSP, ONVIF, Modbus (TCP/RTU), OPC UA, MQTT, CAN, UART, SPI, I2C
+  • Databases/Security: SQLite, SQLCipher (encrypted storage), PostgreSQL, JWT
+  • Build/DevOps: CMake, Azure DevOps CI/CD, Docker, Git, CTest, windeployqt, Inno Setup, ARM cross-compilation`,
+
+      projects: `PRODUCTION PLATFORMS (DIGITAL SHARK TECHNOLOGY):
+  1. Hi-Focus VMS Platform
+     Qt 6, QML, C++, gRPC, Protobuf, FFmpeg, GStreamer, RTSP, ONVIF, SQLCipher
+     Multi-camera live view, timeline playback, PTZ, hardware video decoding.
+  2. SharkView Platform (SCADA/HMI)
+     Qt 5.15/6, C++, QML, Modbus, PLC Tags, CMake, Azure DevOps
+     Studio IDE & Runtime, 15+ industrial protocols, ISA-18.2 alarms, historian.
+  3. Visiontek-HMI Iris Scanner Platform
+     Qt 6, QML, C++, OpenCV, IDDK SDK, USB/UART, CMake, Inno Setup
+     Biometric hardware interface, quality evaluation, live QML streaming.`,
+
+      experience: `CAREER TIMELINE:
+  1. Software Developer (Qt/QML | C++) - Digital Shark Technology Pvt. Ltd.
+     Bengaluru, Karnataka | Aug 2025 - Present
+  2. Embedded Systems Trainee - Vector India Private Limited
+     Bengaluru, Karnataka | Nov 2024 - Aug 2025
+  3. Android Application Developer - Invica Infotech
+     Surat, Gujarat | Sep 2023 - Aug 2024
+  4. Android Developer Intern - Prime Apps Infotech
+     Ahmedabad, Gujarat | Dec 2022 - May 2023`,
+
+      education: `ACADEMIC FOUNDATION:
+  B.Tech in Computer Engineering
+  Dharmsinh Desai University, Nadiad, Gujarat (2019 - 2023)
+  Cumulative Grade Point Average: 8.07 / 10`,
+
+      contact: `COMMUNICATION CHANNELS:
+  • Email:    pateljenil1451@gmail.com
+  • Phone:    +91-93278 11078
+  • LinkedIn: https://www.linkedin.com/in/jenil-p-a92871233
+  • Location: Bengaluru, Karnataka, India`,
+
+      resume: `Triggering download of 'Jenil_Patel_Resume.pdf'...`
+    };
+
+    function addTerminalOutput(text, isCommand = false) {
+      if (!terminalHistory) return;
+      const line = document.createElement('div');
+      line.className = 'terminal-line';
+      if (isCommand) {
+        line.innerHTML = `<span style="color:var(--color-cyan); font-weight:bold;">jenil@sys-console:~$</span> ${text}`;
+      } else {
+        line.innerHTML = `<pre style="font-family:inherit; white-space:pre-wrap; margin:0; color:var(--text-secondary);">${text}</pre>`;
+      }
+      terminalHistory.appendChild(line);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    function processCommand(rawInput) {
+      const cmd = rawInput.trim().toLowerCase();
+      if (!cmd) return;
+
+      addTerminalOutput(rawInput, true);
+
+      if (cmd === 'clear') {
+        terminalHistory.innerHTML = '';
+      } else if (cmd === 'theme') {
+        applyTheme(STATE.theme === 'dark' ? 'light' : 'dark');
+        addTerminalOutput(`System console theme changed to: ${STATE.theme.toUpperCase()}`);
+      } else if (cmd === 'resume') {
+        addTerminalOutput(COMMANDS.resume);
+        const link = document.createElement('a');
+        link.href = 'Jenil_Patel_Resume.pdf';
+        link.download = 'Jenil_Patel_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else if (COMMANDS[cmd]) {
+        addTerminalOutput(COMMANDS[cmd]);
+      } else {
+        addTerminalOutput(`Command not recognized: '${cmd}'. Type 'help' to inspect valid console operations.`);
+      }
+    }
+
+    if (terminalInput) {
+      terminalInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          processCommand(terminalInput.value);
+          terminalInput.value = '';
+        }
+      });
+    }
+
+    // Terminal Preset Buttons (Mobile-friendly)
+    document.querySelectorAll('.btn-term-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cmd = btn.getAttribute('data-cmd');
+        processCommand(cmd);
+      });
+    });
+
+    /* --------------------------------------------------------------------------
+       8. CONTACT FORM DISPATCH
+       -------------------------------------------------------------------------- */
+    function handleDispatchSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const subject = document.getElementById('contact-subject').value;
+      const message = document.getElementById('contact-message').value;
+
+      const mailtoUrl = `mailto:pateljenil1451@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Sender Name: " + name + "\nSender Email: " + email + "\n\nMessage:\n" + message)}`;
+      window.location.href = mailtoUrl;
+    }
+    window.handleDispatchSubmit = handleDispatchSubmit;
+  </script>
+</body>
+
+</html>
